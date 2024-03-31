@@ -1,4 +1,6 @@
 # CleanApkPlugin
+*其他语言版本: [English](README.md), [简体中文](README_zh.md).*
+
 一个Apk清理插件。通过编辑生成的Apk，删除里面的资源文件，达到减少apk大小的目的。
 ## 功能
 1. 可移除apk中的任意文件。
@@ -18,7 +20,7 @@ plugins {
 cleanApk {
     // 是否覆盖原来的apk
     overwriteOutput = false
-		// 是否使用独立的gradle task，cleanApk${variantName}
+    // 是否使用独立的gradle task，cleanApk${variantName}
     useSingleTask = false
     // 支持配置flavor、buildType、flavor+buildType
     // 支持通配符，规则参考packingOptions
@@ -56,3 +58,7 @@ cleanApk {
 }
 ```
 
+## 致谢
+[AndResguard](https://github.com/shwenzhang/AndResGuard) 使用了apksigner部分的代码
+
+[Android-ArscBlamer](https://github.com/google/android-arscblamer) 使用来解析arsc文件

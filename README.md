@@ -1,4 +1,6 @@
 # CleanApkPlugin
+*Read this in other languages: [English](README.md), [简体中文](README_zh.md).*
+
 CleanApkPlugin is an Apk shrink plugin for Gradle. It helps you reduce the size of your Apk by editing the generated Apk and removing unnecessary resource files, such as images, audio and video files, and other files that do not affect the functionality of your app.
 
 ## Features
@@ -58,3 +60,8 @@ cleanApk {
     }
 }
 ```
+
+## Acknowledgments
+[AndResguard](https://github.com/shwenzhang/AndResGuard): Used the code of apksigner
+
+[Android-ArscBlamer](https://github.com/google/android-arscblamer): Used to parse arsc files
