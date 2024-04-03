@@ -1,4 +1,4 @@
-package com.blookliu.clean_apk_plugin
+package io.github.blookliu.clean_apk_plugin
 
 import groovy.lang.Closure
 import org.gradle.api.NamedDomainObjectContainer

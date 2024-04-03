@@ -1,7 +1,7 @@
-package com.blookliu.clean_apk_plugin
+package io.github.blookliu.clean_apk_plugin
 
 import com.google.common.io.Files
-import com.blookliu.clean_apk_plugin.CleanApkPlugin.Companion.LOG_TAG
+import io.github.blookliu.clean_apk_plugin.CleanApkPlugin.Companion.LOG_TAG
 import org.gradle.api.Project
 import java.io.File
 

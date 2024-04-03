@@ -1,4 +1,4 @@
-package com.blookliu.clean_apk_plugin
+package io.github.blookliu.clean_apk_plugin
 
 import com.android.build.gradle.api.ApplicationVariant
 import com.google.common.io.Files
@@ -7,7 +7,7 @@ import com.google.devrel.gmscore.tools.apk.arsc.BinaryResourceValue
 import com.google.devrel.gmscore.tools.apk.arsc.ResourceTableChunk
 import com.google.devrel.gmscore.tools.apk.arsc.StringPoolChunk
 import com.google.devrel.gmscore.tools.apk.arsc.TypeChunk
-import com.blookliu.clean_apk_plugin.CleanApkPlugin.Companion.LOG_TAG
+import io.github.blookliu.clean_apk_plugin.CleanApkPlugin.Companion.LOG_TAG
 import org.gradle.api.Project
 import java.io.File
 import java.lang.Float.max

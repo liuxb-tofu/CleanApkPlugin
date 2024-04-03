@@ -1,4 +1,4 @@
-package com.blookliu.clean_apk_plugin
+package io.github.blookliu.clean_apk_plugin
 
 import apksigner.ApkSignerTool
 import com.android.apksig.internal.apk.AndroidBinXmlParser
@@ -57,31 +57,26 @@ object CleanApkHelper {
                 val archivesDir =
                     "${project.buildDir}/tmp/cleanApk/${apkFile.nameWithoutExtension}-${UUID.randomUUID()}"
                 // 解压apk
-                val compressedData =
-                    ConcurrentHashMap(
-                        FileOperation.unZipAPK(
-                            apkFile.absolutePath,
-                            archivesDir
-                        )
+                val compressedData = ConcurrentHashMap(
+                    FileOperation.unZipAPK(
+                        apkFile.absolutePath, archivesDir
                     )
+                )
+
                 val archivesFileTree = project.fileTree(archivesDir)
                 val archivesPath = Paths.get(archivesDir)
                 var filteredFileList: Collection<File> = archivesFileTree.files
 
                 // 清理资源
                 if (excludes.isNotEmpty()) {
-                    val pathMatchers: List<PathMatcher> =
-                        excludes.map { compileGlob(it) }
+                    val pathMatchers: List<PathMatcher> = excludes.map { compileGlob(it) }
 
 //                                    println("archives path: ${archivesPath.pathString}")
 
                     filteredFileList = archivesFileTree.files.filter { file ->
-                        var relativePath =
-                            file.toPath().relativeTo(archivesPath)
-                        relativePath =
-                            Paths.get("${File.separatorChar}$relativePath")
-                        val matches =
-                            !pathMatchers.none { it.matches(relativePath) }
+                        var relativePath = file.toPath().relativeTo(archivesPath)
+                        relativePath = Paths.get("${File.separatorChar}$relativePath")
+                        val matches = !pathMatchers.none { it.matches(relativePath) }
                         if (matches) {
                             project.log("exclude file ${relativePath.pathString}")
                         }
@@ -99,8 +94,7 @@ object CleanApkHelper {
                     File(apkFile.parentFile, cleanApkExtension.outputFileName)
                 } else {
                     File(
-                        apkFile.parentFile,
-                        "${apkFile.nameWithoutExtension}-cleanApk.apk"
+                        apkFile.parentFile, "${apkFile.nameWithoutExtension}-cleanApk.apk"
                     )
                 }
 
@@ -108,10 +102,7 @@ object CleanApkHelper {
 
                 // 打包过滤后的文件
                 FileOperation.zipFiles(
-                    filteredFileList,
-                    archivesPath.toFile(),
-                    finalOutputFile,
-                    compressedData
+                    filteredFileList, archivesPath.toFile(), finalOutputFile, compressedData
                 )
 
                 if (variant.signingConfig == null) {
@@ -122,8 +113,7 @@ object CleanApkHelper {
                 val zipAlignPath =
                     "${appExtension.sdkDirectory.absolutePath}/build-tools/${appExtension.buildToolsVersion}/zipalign"
                 val zipAlignFile = File(
-                    finalOutputFile.parent,
-                    "${finalOutputFile.nameWithoutExtension}-aligned.apk"
+                    finalOutputFile.parent, "${finalOutputFile.nameWithoutExtension}-aligned.apk"
                 )
 
                 if (zipAlignFile.exists()) {
@@ -135,24 +125,20 @@ object CleanApkHelper {
                     xmlParser.next()
                 }
 
-                var compressNativeLib =
-                    variant.buildType.name != "debug" // debug默认不压缩so
+                var compressNativeLib = variant.buildType.name != "debug" // debug默认不压缩so
                 for (idx in 0 until xmlParser.attributeCount) {
                     if (xmlParser.getAttributeName(idx) == "extractNativeLibs") {
-                        compressNativeLib =
-                            xmlParser.getAttributeBooleanValue(idx)
+                        compressNativeLib = xmlParser.getAttributeBooleanValue(idx)
                         break
                     }
                 }
 
                 FileOperation.alignApk(
-                    zipAlignPath, finalOutputFile, zipAlignFile,
-                    compressNativeLib
+                    zipAlignPath, finalOutputFile, zipAlignFile, compressNativeLib
                 )
 
                 val signedFile = File(
-                    zipAlignFile.parent,
-                    "${zipAlignFile.nameWithoutExtension}-signed.apk"
+                    zipAlignFile.parent, "${zipAlignFile.nameWithoutExtension}-signed.apk"
                 )
 
                 if (signedFile.exists()) {

@@ -17,7 +17,7 @@ CleanApkPlugin is an Apk shrink plugin for Gradle. It helps you reduce the size 
 
 ```kotlin
 plugins {
-    id("com.blookliu.clean-apk-plugin")
+    id("io.github.blookliu.clean-apk-plugin")
 }
 
 cleanApk {

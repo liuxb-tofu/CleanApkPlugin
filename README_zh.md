@@ -14,7 +14,7 @@
 
 ```kotlin
 plugins {
-    id("com.blookliu.clean-apk-plugin")
+    id("io.github.blookliu.clean-apk-plugin")
 }
 
 cleanApk {

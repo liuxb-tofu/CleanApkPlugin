@@ -4,7 +4,7 @@ plugins {
     id("com.gradle.plugin-publish") version "1.2.1"
 }
 
-group = "com.blookliu"
+group = "io.github.blookliu"
 version = "1.0.0"
 repositories {
     google()
@@ -25,11 +25,11 @@ gradlePlugin {
     vcsUrl = "https://github.com/liuxb-tofu/CleanApkPlugin.git"
     plugins {
         create("CleanApkPlugin") {
-            id = "com.blookliu.clean-apk-plugin"
+            id = "io.github.blookliu.clean-apk-plugin"
             displayName = "Plugin for clean Apk"
             description = "A plugin for cleaning Apk"
             tags = listOf("android", "compile", "build")
-            implementationClass = "com.blookliu.clean_apk_plugin.CleanApkPlugin"
+            implementationClass = "io.github.blookliu.clean_apk_plugin.CleanApkPlugin"
         }
     }
 }

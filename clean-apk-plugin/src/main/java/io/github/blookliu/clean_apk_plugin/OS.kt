@@ -1,4 +1,4 @@
-package com.blookliu.clean_apk_plugin
+package io.github.blookliu.clean_apk_plugin
 
 import java.io.BufferedReader
 

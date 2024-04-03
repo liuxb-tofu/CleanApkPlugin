@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.blookliu.clean-apk-plugin")
+    id("io.github.blookliu.clean-apk-plugin")
 }
 
 android {
